@@ -15,11 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 CC ?= gcc
-CFLAGS ?= -ffreestanding -Wall -Wextra -g
+INCLUDE_DIR ?= ../include
+CFLAGS ?= -ffreestanding -Wall -Wextra -g -I$(INCLUDE_DIR)
 BIN_DIR ?= ../bin
 OBJ_DIR = $(BIN_DIR)/obj
 SRC_FILES = $(shell find . -name '*.c')
-OBJ_FILES = $(SRC_FILES:.c=$(OBJ_DIR)/%.o)
+OBJ_FILES = $(patsubst ./%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 AR = ar
 ARFLAGS = cr
 
