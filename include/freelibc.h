@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef __FREELIBC_H
 #define __FREELIBC_H
 
-#define __FREELIBC_VERSION_MAJOR 0
-#define __FREELIBC_VERSION_MINOR 0
-#define __FREELIBC_VERSION_PATCH 1
+#define __FREELIBC_VERSION_MAJOR 1
+#define __FREELIBC_VERSION_MINOR 2
+#define __FREELIBC_VERSION_PATCH 3
 
 #endif // __FREELIBC_H

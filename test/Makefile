@@ -17,7 +17,7 @@
 CC = gcc
 AS = as
 CFLAGS = -ffreestanding -nostdlib -nostartfiles -I../include -nodefaultlibs
-LDFLAGS = -L../bin/obj -lfreelibc -lgcc
+LDFLAGS = -L../bin/obj -lfreelibc
 BINDIR = bin
 
 SRC = $(wildcard *.c)

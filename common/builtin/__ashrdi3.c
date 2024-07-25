@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 long __ashrdi3(long a, int b)
 {
-    long result;
+    long result = 0;
 #ifdef __X86_64__
     __asm__ volatile(
         "shrq %%cl, %0"  // Shift right logical with variable shift count
@@ -35,5 +35,6 @@ long __ashrdi3(long a, int b)
         : "cc"           // Clobbered registers: condition codes
     );
 #endif
+    result = a >> b; // If not x86_64, fall back to standard C
     return result;
 }

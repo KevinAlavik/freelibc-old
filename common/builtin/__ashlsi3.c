@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 int __ashlsi3(int a, int b)
 {
-    int result;
+    int result = 0;
 #ifdef __X86_64__
     __asm__ volatile(
         "sall %%cl, %0"  // Shift left logical with variable shift count
@@ -35,5 +35,6 @@ int __ashlsi3(int a, int b)
         : "cc"           // Clobbered registers: condition codes
     );
 #endif
+    result = a << b; // If not x86_64, fall back to standard C
     return result;
 }

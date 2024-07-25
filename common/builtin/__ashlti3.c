@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 long long __ashlti3(long long a, int b)
 {
-    long long result;
+    long long result = 0;
 #ifdef __X86_64__
     __asm__(
         "shlq %%cl, %0"  // Shift left logical with variable shift count
@@ -35,5 +35,6 @@ long long __ashlti3(long long a, int b)
         : "cc"           // Clobbered registers: condition codes
     );
 #endif
+    result = a << b; // If not x86_64, fall back to standard C
     return result;
 }
