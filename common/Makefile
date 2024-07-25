@@ -24,23 +24,19 @@ OBJ_FILES = $(patsubst ./%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 AR = ar
 ARFLAGS = cr
 
-GREEN = \033[0;32m
-BLUE = \033[0;34m
-NC = \033[0m
-
 all: $(OBJ_DIR)/freelibc.a
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	@echo -e "$(BLUE)====> Compiling $<...$(NC)"
+	@echo -e "\tCC\t\t$<"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/freelibc.a: $(OBJ_FILES)
-	@echo -e "$(GREEN)====> Archiving objects into $@...$(NC)"
+	@echo -e "\tAR\t\t$@"
 	@$(AR) $(ARFLAGS) $@ $^
 
 clean:
-	@echo -e "$(BLUE)====> Cleaning up...$(NC)"
+	@echo -e "\tCLEAN\t\t$(OBJ_DIR)"
 	@rm -rf $(OBJ_DIR)
 
 .PHONY: all clean
