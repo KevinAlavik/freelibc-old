@@ -1,0 +1,51 @@
+/*
+Freelibc
+Copyright (C) 2024 Kevin Alavik and contributors
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+.global _start
+
+_start:
+    # Save the stack pointer (rsp) for later use
+    mov %rsp, %rbp
+
+    # Get argc from the stack
+    mov (%rsp), %rdi
+
+    # Get argv from the stack
+    lea 8(%rsp), %rsi
+
+    # Get envp from the stack (argc * 8 + argv + 8)
+    mov %rdi, %rdx
+    shl $3, %rdx
+    add $8, %rdx
+    add %rsp, %rdx
+    add $8, %rdx
+
+    # Call main with (argc, argv, envp)
+    call main
+
+    # Capture return value of main in rax
+    mov %rax, %rdi
+
+    # Call exit with the return value of main
+    mov $60, %rax          # syscall number for exit (60)
+    syscall                # invoke the system call
+
+    # In case syscall fails
+    mov $1, %rax           # syscall number for exit (60)
+    xor %rdi, %rdi         # return code 0
+    syscall                # invoke the system call
