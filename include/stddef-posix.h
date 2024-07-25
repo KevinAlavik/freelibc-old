@@ -22,13 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef __FREELIBC_POSIX_DEF_STDDEF
 
 #define __FREELIBC_POSIX_DEF_STDINT
-#include <posix/stdint.h>
+#include <stdint-posix.h>
+#include <freelibc.h>
 
 // Define size_t and ptrdiff_t
-#if defined(__LP64__) || defined(_WIN64) || defined(__X86_64__) // 64-bit platform
+#if defined(__FREELIBC64)
 typedef uint64_t size_t;
 typedef int64_t ptrdiff_t;
-#else // Assume 32-bit platform
+#else
 typedef uint32_t size_t;
 typedef int32_t ptrdiff_t;
 #endif

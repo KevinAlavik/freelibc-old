@@ -34,7 +34,8 @@ long long __ashlti3(long long a, int b)
         : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
         : "cc"           // Clobbered registers: condition codes
     );
-#endif
+#else
     result = a << b; // If not x86_64, fall back to standard C
+#endif
     return result;
 }

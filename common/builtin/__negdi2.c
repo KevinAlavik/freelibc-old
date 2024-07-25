@@ -17,25 +17,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __negdi2 - Perform negation of a 64-bit integer.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: The value to be negated.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The negation of `a`.
  */
-int __ashrsi3(int a, int b)
+long __negdi2(long a)
 {
-    int result = 0;
+    long result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "negq %1"      // Perform negation
+        : "=r"(result) // Output operand: result
+        : "0"(a)       // Input operand: a
+        : "cc"         // Clobbered condition codes
     );
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    result = -a; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

@@ -16,15 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FREELIBC_H
-#define __FREELIBC_H
-
-#define __FREELIBC_VERSION_MAJOR 1
-#define __FREELIBC_VERSION_MINOR 2
-#define __FREELIBC_VERSION_PATCH 3
-
-#if defined(__LP64__) || defined(_WIN64) || defined(__X86_64__)
-#define __FREELIBC64
-#endif
-
-#endif // __FREELIBC_H
+/**
+ * __absvdi2 - Compute the absolute value of a 64-bit integer.
+ *
+ * @param a: The integer to be converted.
+ *
+ * @return: The absolute value of a.
+ */
+long __absvdi2(long a)
+{
+    return a < 0 ? -a : a;
+}

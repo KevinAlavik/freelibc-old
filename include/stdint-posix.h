@@ -21,6 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef __FREELIBC_POSIX_DEF_STDINT
 
+#include <freelibc.h>
+
 // Define fixed-width integer types
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
@@ -33,10 +35,10 @@ typedef signed int int32_t;
 typedef signed long int64_t;
 
 // Define pointer-sized integer types
-#if defined(__LP64__) || defined(_WIN64) || defined(__X86_64__) // 64-bit platform
+#if defined(__FREELIBC64)
 typedef unsigned long uintptr_t;
 typedef signed long intptr_t;
-#else // Assume 32-bit platform
+#else
 typedef unsigned int uintptr_t;
 typedef signed int intptr_t;
 #endif
@@ -87,25 +89,42 @@ typedef uint64_t uintmax_t;
 #define INTMAX_MAX INT64_MAX
 #define UINTMAX_MAX UINT64_MAX
 
-// Define 128-bit integer types
 #if defined(__SIZEOF_INT128__)
+// Check if predefined macros for 128-bit integers are available
+#if defined(__INT128_MAX__) && defined(__UINT128_MAX__)
 #define INT128_MIN (-__INT128_MAX__ - 1)
 #define INT128_MAX __INT128_MAX__
 #define UINT128_MAX (__UINT128_MAX__)
+#else
+
+// Custom definitions for INT128_MAX and UINT128_MAX if not predefined
+// Custom 128-bit signed and unsigned integer types
+typedef __int128 int128_t;
+typedef unsigned __int128 uint128_t;
+
+// Calculate INT128_MAX, INT128_MIN, and UINT128_MAX
+#define INT128_MAX ((int128_t)((1ULL << 127) - 1))
+#define INT128_MIN ((int128_t)(-1ULL << 127))
+#define UINT128_MAX ((uint128_t) - 1)
+#endif
 #else
 // For platforms without native 128-bit support
 typedef struct
 {
     unsigned long long __low, __high;
 } uint128_t;
+
 typedef struct
 {
     long long __low, __high;
 } int128_t;
+
 #define INT128_MIN (-9223372036854775808LL - 9223372036854775808LL)
 #define INT128_MAX (9223372036854775807LL + 9223372036854775807LL)
 #define UINT128_MAX 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFULL
 #endif
+
+#define __FREELIBC_STDINT_128
 
 #endif // __FREELIBC_POSIX_DEF_STDINT
 

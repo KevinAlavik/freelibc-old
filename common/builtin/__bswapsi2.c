@@ -16,26 +16,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdint.h>
+
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __bswapsi2 - Byte swap a 32-bit integer.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: The 32-bit integer to be byte-swapped.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The byte-swapped integer.
  */
-int __ashrsi3(int a, int b)
+int32_t __bswapsi2(int32_t a)
 {
-    int result = 0;
-#ifdef __X86_64__
-    __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
-    );
+#ifdef __x86_64__
+    // Using built-in GCC intrinsic for byte swapping
+    return __builtin_bswap32(a);
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    return ((a & 0xFF000000) >> 24) |
+           ((a & 0x00FF0000) >> 8) |
+           ((a & 0x0000FF00) << 8) |
+           ((a & 0x000000FF) << 24);
 #endif
-    return result;
 }

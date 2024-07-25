@@ -17,25 +17,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __udivti3 - Perform unsigned division of two 128-bit integers.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: The dividend.
+ * @param b: The divisor.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The quotient of a divided by b.
  */
-int __ashrsi3(int a, int b)
+unsigned long long __udivti3(unsigned long long a, unsigned long long b)
 {
-    int result = 0;
+    unsigned long long result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "movq %1, %%rax\n\t" // Move low part of dividend into RAX
+        "movq %2, %%rdx\n\t" // Move high part of dividend into RDX
+        "divq %3"            // Perform unsigned division
+        : "=a"(result)       // Result stored in RAX
+        : "r"(a), "r"(b)     // Dividend in RAX:RDX, divisor in any register
+        : "cc", "rdx"        // Clobbered registers
     );
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    result = a / b; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

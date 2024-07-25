@@ -17,25 +17,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __popcountdi2 - Count the number of set bits in a 64-bit unsigned long.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: The integer whose set bits are to be counted.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The number of set bits.
  */
-int __ashrsi3(int a, int b)
+int __popcountdi2(unsigned long a)
 {
-    int result = 0;
 #ifdef __X86_64__
+    int count;
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "popcnt %1, %0" // Count set bits
+        : "=r"(count)   // Output operand: count
+        : "r"(a)        // Input operand: a
+        : "cc"          // Clobbered registers: condition codes
     );
+    return count;
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    int count = 0;
+    while (a)
+    {
+        count += (a & 1);
+        a >>= 1;
+    }
+    return count;
 #endif
-    return result;
 }

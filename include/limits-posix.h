@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef __FREELIBC_POSIX_DEF_LIMITS
 
 #define __FREELIBC_POSIX_DEF_STDDEF
-#include <posix/stddef.h>
+#include <stddef-posix.h>
 
 // Size of basic data types
 #define CHAR_BIT 8 // Number of bits in a char

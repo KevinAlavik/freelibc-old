@@ -17,25 +17,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __modsi3 - Perform signed modulus of two 32-bit integers.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: The dividend.
+ * @param b: The divisor.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The remainder of a divided by b.
  */
-int __ashrsi3(int a, int b)
+int __modsi3(int a, int b)
 {
-    int result = 0;
+    int result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "movl %1, %%eax\n\t"    // Move dividend into EAX
+        "xorl %%edx, %%edx\n\t" // Clear EDX (high part of dividend)
+        "idivl %2\n\t"          // Perform signed division
+        "movl %%edx, %0"        // Remainder is in EDX
+        : "=r"(result)          // Output operand: result
+        : "r"(a), "r"(b)        // Dividend in EAX, divisor in any register
+        : "cc", "edx"           // Clobbered registers
     );
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    result = a % b; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

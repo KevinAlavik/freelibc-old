@@ -17,25 +17,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __addvdi3 - Add two 64-bit integers with overflow check.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: First integer.
+ * @param b: Second integer.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The sum of a and b.
  */
-int __ashrsi3(int a, int b)
+long __addvdi3(long a, long b)
 {
-    int result = 0;
-#ifdef __X86_64__
-    __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
-    );
-#else
-    result = a >> b; // If not x86_64, fall back to standard C
-#endif
+    long result = a + b;
+    // Check for overflow
+    if (((a ^ result) & (b ^ result)) < 0)
+    {
+        __builtin_abort(); // Overflow detected
+    }
     return result;
 }

@@ -17,25 +17,28 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __multi3 - Perform signed multiplication of two 128-bit integers.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: The first operand.
+ * @param b: The second operand.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The product of a and b.
  */
-int __ashrsi3(int a, int b)
+long long __multi3(long long a, long long b)
 {
-    int result = 0;
+    long long result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "movq %1, %%rax\n\t"     // Move low part of first operand into RAX
+        "movq %2, %%rbx\n\t"     // Move low part of second operand into RBX
+        "imulq %%rbx, %%rax\n\t" // Perform signed multiplication
+        "movq %%rax, %0"         // Move result from RAX
+        : "=r"(result)           // Output operand: result
+        : "r"(a), "r"(b)         // Operands
+        : "cc", "rbx"            // Clobbered registers
     );
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    result = a * b; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

@@ -17,25 +17,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __lshrdi3 - Perform a logical right shift on a 64-bit integer.
  *
- * @param a: The int value to be shifted.
+ * @param a: The value to be shifted.
  * @param b: The number of positions to shift `a` to the right.
  *
  * @return: The result of shifting `a` to the right by `b` positions.
  */
-int __ashrsi3(int a, int b)
+long __lshrdi3(long a, int b)
 {
-    int result = 0;
+    long result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
+        "shrq %%cl, %0"  // Shift right logical with variable shift count
         : "=r"(result)   // Output operand: result
         : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
         : "cc"           // Clobbered registers: condition codes
     );
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    result = (unsigned long)a >> b; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

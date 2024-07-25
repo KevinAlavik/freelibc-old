@@ -17,25 +17,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashrsi3 - Perform an arithmetic right shift on a 64-bit integer.
+ * __ffsti2 - Find the index of the least significant set bit in a 64-bit unsigned long long.
  *
- * @param a: The int value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
+ * @param a: The integer to be analyzed.
  *
- * @return: The result of shifting `a` to the right by `b` positions.
+ * @return: The index of the least significant set bit, or zero if a is zero.
  */
-int __ashrsi3(int a, int b)
+int __ffsti2(unsigned long long a)
 {
-    int result = 0;
 #ifdef __X86_64__
+    int index;
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift right logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "bsfq %1, %0" // Find first set bit
+        : "=r"(index) // Output operand: index
+        : "r"(a)      // Input operand: a
+        : "cc"        // Clobbered registers: condition codes
     );
+    return index + 1; // Return index starting from 1
 #else
-    result = a >> b; // If not x86_64, fall back to standard C
+    if (a == 0)
+        return 0;
+    int index = 0;
+    while ((a & 1) == 0)
+    {
+        index++;
+        a >>= 1;
+    }
+    return index + 1; // Return index starting from 1
 #endif
-    return result;
 }
