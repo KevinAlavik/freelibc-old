@@ -16,7 +16,7 @@
 
 CC = gcc
 AS = as
-CFLAGS = -ffreestanding -nostdlib -nostartfiles -I../include -nodefaultlibs
+CFLAGS = -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -nostdinc -I../include
 LDFLAGS = -L../bin/obj -lfreelibc
 BINDIR = bin
 

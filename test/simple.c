@@ -16,9 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <stdint.h>
+#define __FREELIBC_POSIX_DEF_STDINT
+#include <posix/stdint.h>
 
-int main(int argc, char **argv)
+int main(void)
 {
-    return sizeof(uint32_t);
+    return sizeof(uintptr_t);
 }
