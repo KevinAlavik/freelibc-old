@@ -16,15 +16,32 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FREELIBC_H
-#define __FREELIBC_H
+#include <stdint.h>
 
-#define __FREELIBC_VERSION_MAJOR 1
-#define __FREELIBC_VERSION_MINOR 2
-#define __FREELIBC_VERSION_PATCH 3
+void putc(char ch)
+{
+    asm volatile(
+        "mov $1, %%rax;"
+        "mov $1, %%rdi;"
+        "mov %0, %%rsi;"
+        "mov $1, %%rdx;"
+        "syscall"
+        :
+        : "r"(&ch)
+        : "%rax", "%rdi", "%rsi", "%rdx");
+}
 
-#if defined(__LP64__) || defined(_WIN64) || defined(__X86_64__)
-#define __FREELIBC64
-#endif
+void puts(char *str)
+{
+    while (*str != '\0')
+    {
+        putc(*str);
+        str++;
+    }
+}
 
-#endif // __FREELIBC_H
+int main()
+{
+    puts("Hello\n");
+    return 0;
+}

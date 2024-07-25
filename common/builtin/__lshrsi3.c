@@ -17,25 +17,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __lshrsi3 - Perform a logical right shift on a 32-bit integer.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: The value to be shifted.
+ * @param b: The number of positions to shift `a` to the right.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The result of shifting `a` to the right by `b` positions.
  */
-int __ashlsi3(int a, int b)
+int __lshrsi3(int a, int b)
 {
-    int result = 0;
+    int result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
+        "shrl %%cl, %0"  // Shift right logical with variable shift count
         : "=r"(result)   // Output operand: result
         : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
         : "cc"           // Clobbered registers: condition codes
     );
 #else
-    result = a << b; // If not x86_64, fall back to standard C
+    result = (unsigned int)a >> b; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

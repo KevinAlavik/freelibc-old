@@ -17,25 +17,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __mulsi3 - Perform signed multiplication of two 32-bit integers.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: The first operand.
+ * @param b: The second operand.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The product of a and b.
  */
-int __ashlsi3(int a, int b)
+int __mulsi3(int a, int b)
 {
-    int result = 0;
+    int result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
+        "imull %2, %0"   // Perform signed multiplication
         : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        : "0"(a), "r"(b) // Operands: a in the same register as result, b in any register
+        : "cc"           // Clobbered condition codes
     );
 #else
-    result = a << b; // If not x86_64, fall back to standard C
+    result = a * b; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

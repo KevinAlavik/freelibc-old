@@ -17,25 +17,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __modti3 - Perform signed modulus of two 128-bit integers.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: The dividend.
+ * @param b: The divisor.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The remainder of a divided by b.
  */
-int __ashlsi3(int a, int b)
+long long __modti3(long long a, long long b)
 {
-    int result = 0;
+    long long result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "movq %1, %%rax\n\t" // Move low part of dividend into RAX
+        "movq %2, %%rdx\n\t" // Move high part of dividend into RDX
+        "cqto\n\t"           // Sign extend RAX into RDX:RAX
+        "idivq %3\n\t"       // Perform signed division
+        "movq %%rdx, %0"     // Remainder is in RDX
+        : "=r"(result)       // Output operand: result
+        : "r"(a), "r"(b)     // Dividend in RAX:RDX, divisor in any register
+        : "cc", "rdx"        // Clobbered registers
     );
 #else
-    result = a << b; // If not x86_64, fall back to standard C
+    result = a % b; // Fallback for non-x86_64 systems
 #endif
     return result;
 }

@@ -17,25 +17,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __clzdi2 - Count the number of leading zero bits in a 64-bit unsigned long.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: The integer whose leading zeroes are to be counted.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The number of leading zero bits.
  */
-int __ashlsi3(int a, int b)
+int __clzdi2(unsigned long a)
 {
-    int result = 0;
 #ifdef __X86_64__
+    int count;
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "lzcnt %1, %0" // Count leading zeros
+        : "=r"(count)  // Output operand: count
+        : "r"(a)       // Input operand: a
+        : "cc"         // Clobbered registers: condition codes
     );
+    return count;
 #else
-    result = a << b; // If not x86_64, fall back to standard C
+    if (a == 0)
+        return 64;
+    int count = 0;
+    while ((a & 0x8000000000000000UL) == 0)
+    {
+        count++;
+        a <<= 1;
+    }
+    return count;
 #endif
-    return result;
 }

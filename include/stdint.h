@@ -16,15 +16,26 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FREELIBC_H
-#define __FREELIBC_H
+#ifndef __FREELIBC_STDINT_H
+#define __FREELIBC_STDINT_H
 
-#define __FREELIBC_VERSION_MAJOR 1
-#define __FREELIBC_VERSION_MINOR 2
-#define __FREELIBC_VERSION_PATCH 3
+#define __FREELIBC_POSIX_DEF_STDINT
+#include <stdint-posix.h>
 
-#if defined(__LP64__) || defined(_WIN64) || defined(__X86_64__)
-#define __FREELIBC64
+typedef int8_t i8;
+typedef uint8_t u8;
+typedef int16_t i16;
+typedef uint16_t u16;
+typedef int32_t i32;
+typedef uint32_t u32;
+#if defined(__FREELIBC64)
+typedef int64_t i64;
+typedef uint64_t u64;
 #endif
 
-#endif // __FREELIBC_H
+#if defined(__FREELIBC_STDINT_128)
+typedef int128_t i128;
+typedef uint128_t u128;
+#endif
+
+#endif // __FRELIBC_STDINT_H

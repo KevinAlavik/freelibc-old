@@ -17,25 +17,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __mulvdi3 - Multiply two 64-bit integers with overflow check.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: First integer.
+ * @param b: Second integer.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The product of a and b.
  */
-int __ashlsi3(int a, int b)
+long __mulvdi3(long a, long b)
 {
-    int result = 0;
-#ifdef __X86_64__
-    __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
-    );
-#else
-    result = a << b; // If not x86_64, fall back to standard C
-#endif
+    long result = a * b;
+    // Check for overflow
+    if (a != 0 && result / a != b)
+    {
+        __builtin_abort(); // Overflow detected
+    }
     return result;
 }

@@ -16,26 +16,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <stdint.h>
+
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __bswapdi2 - Byte swap a 64-bit integer.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: The 64-bit integer to be byte-swapped.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The byte-swapped integer.
  */
-int __ashlsi3(int a, int b)
+int64_t __bswapdi2(int64_t a)
 {
-    int result = 0;
-#ifdef __X86_64__
-    __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
-    );
+#ifdef __x86_64__
+    // Using built-in GCC intrinsic for byte swapping
+    return __builtin_bswap64(a);
 #else
-    result = a << b; // If not x86_64, fall back to standard C
+    return ((a & 0xFF00000000000000LL) >> 56) |
+           ((a & 0x00FF000000000000LL) >> 40) |
+           ((a & 0x0000FF0000000000LL) >> 24) |
+           ((a & 0x000000FF00000000LL) >> 8) |
+           ((a & 0x00000000FF000000LL) << 8) |
+           ((a & 0x0000000000FF0000LL) << 24) |
+           ((a & 0x000000000000FF00LL) << 40) |
+           ((a & 0x00000000000000FFLL) << 56);
 #endif
-    return result;
 }

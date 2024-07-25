@@ -17,25 +17,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __divsi3 - Perform signed division of two 32-bit integers.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: The dividend.
+ * @param b: The divisor.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The quotient of a divided by b.
  */
-int __ashlsi3(int a, int b)
+int __divsi3(int a, int b)
 {
-    int result = 0;
+    int result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "cltd\n\t"               // Sign extend eax into edx:eax
+        "idivl %2"               // Perform signed division
+        : "=a"(result)           // Result is stored in eax
+        : "a"(a), "d"(0), "r"(b) // Dividend in eax, edx:eax set by cltd, divisor in any register
+        : "cc"                   // Clobbers condition codes
     );
 #else
-    result = a << b; // If not x86_64, fall back to standard C
+    result = a / b; // Fallback to standard C if not x86_64
 #endif
     return result;
 }

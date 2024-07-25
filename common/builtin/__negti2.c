@@ -17,25 +17,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * __ashlsi3 - Perform an arithmetic left shift on a 32-bit integer.
+ * __negti2 - Perform negation of a 128-bit integer.
  *
- * @param a: The integer value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
+ * @param a: The value to be negated.
  *
- * @return: The result of shifting `a` to the left by `b` positions.
+ * @return: The negation of `a`.
  */
-int __ashlsi3(int a, int b)
+long long __negti2(long long a)
 {
-    int result = 0;
+    long long result;
 #ifdef __X86_64__
     __asm__ volatile(
-        "sall %%cl, %0"  // Shift left logical with variable shift count
-        : "=r"(result)   // Output operand: result
-        : "0"(a), "c"(b) // Input operands: a in the same register as result, b in %cl
-        : "cc"           // Clobbered registers: condition codes
+        "movq %1, %%rax\n\t" // Move low part of value into RAX
+        "negq %%rax\n\t"     // Perform negation
+        "movq %%rax, %0"     // Move result from RAX
+        : "=r"(result)       // Output operand: result
+        : "r"(a)             // Input operand: a
+        : "cc"               // Clobbered condition codes
     );
 #else
-    result = a << b; // If not x86_64, fall back to standard C
+    result = -a; // Fallback for non-x86_64 systems
 #endif
     return result;
 }
