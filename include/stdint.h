@@ -20,6 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __FRELIBC_STDINT_H
 
 #define __FRELIBC_DEF_STDINT_GCC
-#include <backends/stdint-gcc.h>
+#include "backends/stdint-gcc.h"
 
 #endif // __FRELIBC_STDINT_H

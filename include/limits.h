@@ -20,6 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __FRELIBC_LIMITS_H
 
 #define __FRELIBC_DEF_LIMITS_GCC
-#include <backends/limits-gcc.h>
+#include "backends/limits-gcc.h"
 
 #endif // __FRELIBC_LIMITS_H

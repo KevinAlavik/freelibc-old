@@ -20,6 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __FRELIBC_STDBOOL_H
 
 #define __FRELIBC_DEF_STDBOOL_GCC
-#include <backends/stdbool-gcc.h>
+#include "backends/stdbool-gcc.h"
 
 #endif // __FRELIBC_STDBOOL_H
