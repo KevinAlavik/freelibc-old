@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdint.h>
-#include <string.h>
+#include <stddef.h>
 
 #ifndef __LIBGCC_BITINT_LIMB_WIDTH__
 #define __LIBGCC_BITINT_LIMB_WIDTH__ 64

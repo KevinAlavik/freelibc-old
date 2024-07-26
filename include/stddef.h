@@ -22,4 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __FRELIBC_DEF_STDDEF_GCC
 #include "backends/stddef-gcc.h"
 
+// Misc short typedefs
+typedef size_t usize;
+typedef ptrdiff_t ptrdiff;
+typedef wchar_t wchar;
+
 #endif // __FRELIBC_STDDEF_H
