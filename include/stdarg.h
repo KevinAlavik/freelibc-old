@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDARG_H
-#define __FRELIBC_STDARG_H
+#ifndef __FREELIBC_STDARG_H
+#define __FREELIBC_STDARG_H
 
-#define __FRELIBC_DEF_STDARG_GCC
-#include <backends/stdarg-gcc.h>
+#define __FREELIBC_DEF_STDARG_GCC
+#include "backends/stdarg-gcc.h"
 
-#endif // __FRELIBC_STDARG_H
+#endif // __FREELIBC_STDARG_H

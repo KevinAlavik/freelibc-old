@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDDEF_GCC_H
-#define __FRELIBC_STDDEF_GCC_H
+#ifndef __FREELIBC_STDDEF_GCC_H
+#define __FREELIBC_STDDEF_GCC_H
 
-#if defined(__FRELIBC_DEF_STDDEF_GCC)
+#if defined(__FREELIBC_DEF_STDDEF_GCC)
 
 typedef __SIZE_TYPE__ size_t;
 typedef __PTRDIFF_TYPE__ ptrdiff_t;
@@ -29,6 +29,6 @@ typedef __WCHAR_TYPE__ wchar_t;
 
 #define offsetof(type, member) __builtin_offsetof(type, member)
 
-#endif // __FRELIBC_DEF_STDDEF_GCC
+#endif // __FREELIBC_DEF_STDDEF_GCC
 
-#endif // __FRELIBC_STDDEF_GCC_H
+#endif // __FREELIBC_STDDEF_GCC_H

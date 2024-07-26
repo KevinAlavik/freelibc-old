@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __ashrdi3 - Perform an arithmetic right shift on a 64-bit integer.
- *
- * @param a: The long value to be shifted.
- * @param b: The number of positions to shift `a` to the right.
- *
- * @return: The result of shifting `a` to the right by `b` positions.
- */
 long __ashrdi3(long a, int b)
 {
     long result = 0;

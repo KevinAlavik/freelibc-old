@@ -16,10 +16,42 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDINT_H
-#define __FRELIBC_STDINT_H
+#ifndef __FREELIBC_STDINT_H
+#define __FREELIBC_STDINT_H
 
-#define __FRELIBC_DEF_STDINT_GCC
-#include <backends/stdint-gcc.h>
+#define __FREELIBC_DEF_STDINT_GCC
+#include "backends/stdint-gcc.h"
 
-#endif // __FRELIBC_STDINT_H
+// Signed short typedefs
+typedef int8_t i8;
+typedef int16_t i16;
+typedef int32_t i32;
+typedef int64_t i64;
+typedef __int128_t __i128;
+
+// Signed fast short typedefs
+typedef int_fast8_t if8;
+typedef int_fast16_t if16;
+typedef int_fast32_t if32;
+typedef int_fast64_t if64;
+typedef int_fast128_t if128;
+
+// Un-Signed short typedefs
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+typedef uint64_t u64;
+typedef __uint128_t __u128;
+
+// Un-Signed fast short typedefs
+typedef uint_fast8_t uf8;
+typedef uint_fast16_t uf16;
+typedef uint_fast32_t uf32;
+typedef uint_fast64_t uf64;
+typedef uint_fast128_t uf128;
+
+// Misc short typedefs
+typedef uintptr_t uptr;
+typedef intptr_t intptr;
+
+#endif // __FREELIBC_STDINT_H

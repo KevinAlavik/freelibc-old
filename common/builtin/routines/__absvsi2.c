@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __absvsi2 - Compute the absolute value of a 32-bit integer.
- *
- * @param a: The integer to be converted.
- *
- * @return: The absolute value of a.
- */
 int __absvsi2(int a)
 {
     return a < 0 ? -a : a;

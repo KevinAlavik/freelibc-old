@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __umodti3 - Perform unsigned modulus of two 128-bit integers.
- *
- * @param a: The dividend.
- * @param b: The divisor.
- *
- * @return: The remainder of a divided by b.
- */
 unsigned long long __umodti3(unsigned long long a, unsigned long long b)
 {
     unsigned long long result;

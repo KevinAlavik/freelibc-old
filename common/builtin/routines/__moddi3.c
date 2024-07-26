@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __moddi3 - Perform signed modulus of two 64-bit integers.
- *
- * @param a: The dividend.
- * @param b: The divisor.
- *
- * @return: The remainder of a divided by b.
- */
 long __moddi3(long a, long b)
 {
     long result;

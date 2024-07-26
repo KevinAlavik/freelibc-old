@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDARG_GCC_H
-#define __FRELIBC_STDARG_GCC_H
+#ifndef __FREELIBC_STDARG_GCC_H
+#define __FREELIBC_STDARG_GCC_H
 
-#if defined(__FRELIBC_DEF_STDARG_GCC)
+#if defined(__FREELIBC_DEF_STDARG_GCC)
 
 typedef __builtin_va_list va_list;
 
@@ -28,6 +28,6 @@ typedef __builtin_va_list va_list;
 #define va_end(ap) __builtin_va_end(ap)
 #define va_copy(dest, src) __builtin_va_copy(dest, src)
 
-#endif // __FRELIBC_DEF_STDARG_GCC
+#endif // __FREELIBC_DEF_STDARG_GCC
 
-#endif // __FRELIBC_STDARG_GCC_H
+#endif // __FREELIBC_STDARG_GCC_H

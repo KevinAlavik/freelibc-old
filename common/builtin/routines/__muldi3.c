@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __muldi3 - Perform signed multiplication of two 64-bit integers.
- *
- * @param a: The first operand.
- * @param b: The second operand.
- *
- * @return: The product of a and b.
- */
 long __muldi3(long a, long b)
 {
     long result;

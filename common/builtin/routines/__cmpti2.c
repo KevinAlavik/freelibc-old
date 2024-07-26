@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __cmpti2 - Perform signed comparison of two 128-bit integers.
- *
- * @param a: First integer.
- * @param b: Second integer.
- *
- * @return: 0 if a < b, 1 if a == b, 2 if a > b.
- */
 int __cmpti2(long long a, long long b)
 {
     int result;

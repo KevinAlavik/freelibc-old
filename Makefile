@@ -17,8 +17,8 @@
 BIN_DIR := $(abspath bin)
 COMMON_DIR := $(abspath common)
 INCLUDE_DIR := $(abspath include)
-LIB_DIR := /usr/local/lib
-INCLUDE_INSTALL_DIR := /usr/local/include
+LIB_DIR ?= /usr/local/lib
+INCLUDE_INSTALL_DIR ?= /usr/local/include/freelibc
 
 all: $(BIN_DIR)/freelibc.a
 
@@ -31,7 +31,7 @@ install: $(BIN_DIR)/freelibc.a
 	install $(BIN_DIR)/obj/freelibc.a $(LIB_DIR)/libfreelibc.a
 	@echo "====> Installing headers to $(INCLUDE_INSTALL_DIR)"
 	install -d $(INCLUDE_INSTALL_DIR)
-	install -t $(INCLUDE_INSTALL_DIR) $(INCLUDE_DIR)/*
+	rsync -a $(INCLUDE_DIR)/ $(INCLUDE_INSTALL_DIR)/
 	@echo "====> Configuring GCC"
 	echo $(LIB_DIR) | sudo tee /etc/ld.so.conf.d/freelibc.conf
 	sudo ldconfig

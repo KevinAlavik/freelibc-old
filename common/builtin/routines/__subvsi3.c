@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __subvsi3 - Subtract two 32-bit integers with overflow check.
- *
- * @param a: First integer.
- * @param b: Second integer.
- *
- * @return: The result of a - b.
- */
 int __subvsi3(int a, int b)
 {
     int result = a - b;

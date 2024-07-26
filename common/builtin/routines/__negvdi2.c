@@ -18,13 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <limits.h>
 
-/**
- * __negvdi2 - Negate a 64-bit integer with overflow check.
- *
- * @param a: The integer to be negated.
- *
- * @return: The negation of a.
- */
 long __negvdi2(long a)
 {
     if (a == LONG_MIN)

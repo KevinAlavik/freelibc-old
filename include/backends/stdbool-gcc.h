@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDBOOL_GCC_H
-#define __FRELIBC_STDBOOL_GCC_H
+#ifndef __FREELIBC_STDBOOL_GCC_H
+#define __FREELIBC_STDBOOL_GCC_H
 
-#if defined(__FRELIBC_DEF_STDBOOL_GCC)
+#if defined(__FREELIBC_DEF_STDBOOL_GCC)
 
 #define bool _Bool
 #define true 1
@@ -27,6 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define __bool_true_false_are_defined 1
 
-#endif // __FRELIBC_DEF_STDBOOL_GCC
+#endif // __FREELIBC_DEF_STDBOOL_GCC
 
-#endif // __FRELIBC_STDBOOL_GCC_H
+#endif // __FREELIBC_STDBOOL_GCC_H

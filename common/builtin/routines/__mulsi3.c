@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __mulsi3 - Perform signed multiplication of two 32-bit integers.
- *
- * @param a: The first operand.
- * @param b: The second operand.
- *
- * @return: The product of a and b.
- */
 int __mulsi3(int a, int b)
 {
     int result;

@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __clzti2 - Count the number of leading zero bits in a 64-bit unsigned long long.
- *
- * @param a: The integer whose leading zeroes are to be counted.
- *
- * @return: The number of leading zero bits.
- */
 int __clzti2(unsigned long long a)
 {
 #ifdef __X86_64__

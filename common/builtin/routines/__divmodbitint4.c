@@ -29,15 +29,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 typedef uint64_t UBILtype;
 
-/**
- * __memset - Set a block of memory to a specific value.
- *
- * This function uses inline assembly to set a block of memory to a specific value byte-by-byte.
- *
- * @param ptr: Pointer to the starting address of the memory block.
- * @param value: The value to set each byte to.
- * @param size: The size of the memory block in bytes.
- */
 static void __memset(void *ptr, uint8_t value, size_t size)
 {
     __asm__ volatile(
@@ -50,15 +41,6 @@ static void __memset(void *ptr, uint8_t value, size_t size)
         : "rax", "rcx", "rdi", "memory");
 }
 
-/**
- * __memcpy - Copy a block of memory from source to destination.
- *
- * This function uses inline assembly to copy a block of memory from a source address to a destination address.
- *
- * @param dest: Pointer to the destination address where the memory will be copied to.
- * @param src: Pointer to the source address from where the memory will be copied.
- * @param size: The size of the memory block to be copied, in bytes.
- */
 static void __memcpy(void *dest, const void *src, size_t size)
 {
     __asm__ volatile(
@@ -71,21 +53,6 @@ static void __memcpy(void *dest, const void *src, size_t size)
         : "rcx", "rsi", "rdi", "memory");
 }
 
-/**
- * __divmodbitint4 - Divide and modulus bit-precise integer operands u by v.
- *
- * This function performs division and modulus operations on large integers represented as arrays of limbs.
- * It computes the quotient and remainder of the division of `u` by `v` and stores the results in `q` and `r` respectively.
- *
- * @param q: Pointer to the result array for the quotient of the division.
- * @param qprec: Precision of the quotient in bits.
- * @param r: Pointer to the result array for the remainder of the division.
- * @param rprec: Precision of the remainder in bits.
- * @param u: Pointer to the dividend array of limbs.
- * @param uprec: Precision of the dividend in bits.
- * @param v: Pointer to the divisor array of limbs.
- * @param vprec: Precision of the divisor in bits.
- */
 void __divmodbitint4(UBILtype *q, int32_t qprec, UBILtype *r, int32_t rprec, const UBILtype *u, int32_t uprec, const UBILtype *v, int32_t vprec)
 {
     int num_limbs_u = (uprec + __LIBGCC_BITINT_LIMB_WIDTH__ - 1) / __LIBGCC_BITINT_LIMB_WIDTH__;

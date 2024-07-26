@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __paritydi2 - Calculate the parity of a 64-bit unsigned long.
- *
- * @param a: The integer whose parity is to be calculated.
- *
- * @return: The parity of the integer (0 if even number of bits set, 1 if odd).
- */
 int __paritydi2(unsigned long a)
 {
 #ifdef __X86_64__
