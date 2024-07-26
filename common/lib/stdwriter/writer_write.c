@@ -15,18 +15,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "utils.h"
+
 #include <stdwriter.h>
 
-void ch(u8 ch)
+int writer_write(writer_t *writer, const char *fmt, ...)
 {
-    putc(ch);
-}
-
-int main()
-{
-    writer_t stdout;
-    writer_init(&stdout, WRITER_FMT_CPRINTF, ch);
-    writer_write(&stdout, "Hello, World!\n");
-    return 0;
+    char *str = (char *)fmt;
+    while (*str != '\0')
+    {
+        writer->callback(*str);
+        str++;
+    }
 }
