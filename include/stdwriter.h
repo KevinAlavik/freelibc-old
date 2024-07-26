@@ -20,8 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define __FREELIBC_STDWRITER_H
 
 #include <stdint.h>
-
-// TODO;
+#include <stdarg.h>
 
 typedef enum
 {
@@ -38,5 +37,6 @@ typedef struct
 
 void writer_init(writer_t *writer, writer_fmt fmt, writer_callback_t callback);
 int writer_write(writer_t *writer, const char *fmt, ...);
+int _writer_vprintf(writer_t *writer, const char *fmt, va_list args);
 
 #endif // __FREELIBC_STDWRITER_H

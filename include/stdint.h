@@ -53,5 +53,7 @@ typedef uint_fast128_t uf128;
 // Misc short typedefs
 typedef uintptr_t uptr;
 typedef intptr_t intptr;
+typedef int imax;
+typedef unsigned int umax;
 
 #endif // __FREELIBC_STDINT_H

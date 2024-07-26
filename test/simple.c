@@ -27,6 +27,6 @@ int main()
 {
     writer_t stdout;
     writer_init(&stdout, WRITER_FMT_CPRINTF, ch);
-    writer_write(&stdout, "Hello, World!\n");
+    writer_write(&stdout, "Hello, %s!\n", "World");
     return 0;
 }

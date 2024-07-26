@@ -17,13 +17,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <stdwriter.h>
+#include <stdarg.h>
 
 int writer_write(writer_t *writer, const char *fmt, ...)
 {
-    char *str = (char *)fmt;
-    while (*str != '\0')
+    int ret = 0;
+    va_list args;
+    va_start(args, fmt);
+
+    switch (writer->fmt)
     {
-        writer->callback(*str);
-        str++;
+    case WRITER_FMT_CPRINTF:
+        ret = _writer_vprintf(writer, fmt, args);
+        break;
+    default:
+        break;
     }
+    va_end(args);
+
+    return ret;
 }
