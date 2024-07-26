@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDINT_H
-#define __FRELIBC_STDINT_H
+#ifndef __FREELIBC_STDINT_H
+#define __FREELIBC_STDINT_H
 
-#define __FRELIBC_DEF_STDINT_GCC
+#define __FREELIBC_DEF_STDINT_GCC
 #include "backends/stdint-gcc.h"
 
 // Signed short typedefs
@@ -54,4 +54,4 @@ typedef uint_fast128_t uf128;
 typedef uintptr_t uptr;
 typedef intptr_t intptr;
 
-#endif // __FRELIBC_STDINT_H
+#endif // __FREELIBC_STDINT_H

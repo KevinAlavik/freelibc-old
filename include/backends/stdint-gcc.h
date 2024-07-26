@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDINT_GCC_H
-#define __FRELIBC_STDINT_GCC_H
+#ifndef __FREELIBC_STDINT_GCC_H
+#define __FREELIBC_STDINT_GCC_H
 
-#if defined(__FRELIBC_DEF_STDINT_GCC)
+#if defined(__FREELIBC_DEF_STDINT_GCC)
 
 #include <limits.h>
 
@@ -192,6 +192,6 @@ typedef unsigned __int128 uintmax128_t;
 #define WINT_MIN 0
 #define WINT_MAX 65535
 
-#endif // __FRELIBC_DEF_STDINT_GCC
+#endif // __FREELIBC_DEF_STDINT_GCC
 
-#endif // __FRELIBC_STDINT_GCC_H
+#endif // __FREELIBC_STDINT_GCC_H

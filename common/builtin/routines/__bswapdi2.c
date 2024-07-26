@@ -18,13 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdint.h>
 
-/**
- * __bswapdi2 - Byte swap a 64-bit integer.
- *
- * @param a: The 64-bit integer to be byte-swapped.
- *
- * @return: The byte-swapped integer.
- */
 int64_t __bswapdi2(int64_t a)
 {
 #ifdef __x86_64__

@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __ucmpdi2 - Perform unsigned comparison of two 64-bit integers.
- *
- * @param a: First integer.
- * @param b: Second integer.
- *
- * @return: 0 if a < b, 1 if a == b, 2 if a > b.
- */
 int __ucmpdi2(unsigned long a, unsigned long b)
 {
     int result;

@@ -18,13 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdint.h>
 
-/**
- * __bswapsi2 - Byte swap a 32-bit integer.
- *
- * @param a: The 32-bit integer to be byte-swapped.
- *
- * @return: The byte-swapped integer.
- */
 int32_t __bswapsi2(int32_t a)
 {
 #ifdef __x86_64__

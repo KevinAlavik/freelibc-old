@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __ashlti3 - Perform an arithmetic left shift on a 128-bit integer.
- *
- * @param a: The long long value to be shifted.
- * @param b: The number of positions to shift `a` to the left.
- *
- * @return: The result of shifting `a` to the left by `b` positions.
- */
 long long __ashlti3(long long a, int b)
 {
     long long result = 0;

@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __addvdi3 - Add two 64-bit integers with overflow check.
- *
- * @param a: First integer.
- * @param b: Second integer.
- *
- * @return: The sum of a and b.
- */
 long __addvdi3(long a, long b)
 {
     long result = a + b;

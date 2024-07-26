@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __divsi3 - Perform signed division of two 32-bit integers.
- *
- * @param a: The dividend.
- * @param b: The divisor.
- *
- * @return: The quotient of a divided by b.
- */
 int __divsi3(int a, int b)
 {
     int result;

@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __clzsi2 - Count the number of leading zero bits in a 32-bit unsigned integer.
- *
- * @param a: The integer whose leading zeroes are to be counted.
- *
- * @return: The number of leading zero bits.
- */
 int __clzsi2(unsigned int a)
 {
 #ifdef __X86_64__

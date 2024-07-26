@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __ctzdi2 - Count the number of trailing zero bits in a 64-bit unsigned long.
- *
- * @param a: The integer whose trailing zeroes are to be counted.
- *
- * @return: The number of trailing zero bits.
- */
 int __ctzdi2(unsigned long a)
 {
 #ifdef __X86_64__

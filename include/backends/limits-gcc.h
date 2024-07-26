@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_LIMITS_GCC_H
-#define __FRELIBC_LIMITS_GCC_H
+#ifndef __FREELIBC_LIMITS_GCC_H
+#define __FREELIBC_LIMITS_GCC_H
 
-#if defined(__FRELIBC_DEF_LIMITS_GCC)
+#if defined(__FREELIBC_DEF_LIMITS_GCC)
 
 #define CHAR_BIT 8
 
@@ -53,6 +53,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LLONG_MAX 9223372036854775807LL
 #define ULLONG_MAX 18446744073709551615ULL
 
-#endif // __FRELIBC_DEF_LIMITS_GCC
+#endif // __FREELIBC_DEF_LIMITS_GCC
 
-#endif // __FRELIBC_LIMITS_GCC_H
+#endif // __FREELIBC_LIMITS_GCC_H

@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDDEF_H
-#define __FRELIBC_STDDEF_H
+#ifndef __FREELIBC_STDDEF_H
+#define __FREELIBC_STDDEF_H
 
-#define __FRELIBC_DEF_STDDEF_GCC
+#define __FREELIBC_DEF_STDDEF_GCC
 #include "backends/stddef-gcc.h"
 
 // Misc short typedefs
@@ -27,4 +27,4 @@ typedef size_t usize;
 typedef ptrdiff_t ptrdiff;
 typedef wchar_t wchar;
 
-#endif // __FRELIBC_STDDEF_H
+#endif // __FREELIBC_STDDEF_H

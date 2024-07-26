@@ -16,7 +16,7 @@
 
 CC = gcc
 AS = as
-CFLAGS = -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -nostdinc -I /usr/local/include/freelibc
+CFLAGS = -fno-stack-protector -ffreestanding -nostdlib -nostartfiles -nodefaultlibs -nostdinc -I /usr/local/include/freelibc
 LDFLAGS = -L/usr/local/lib -lfreelibc
 BINDIR = bin
 

@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __multi3 - Perform signed multiplication of two 128-bit integers.
- *
- * @param a: The first operand.
- * @param b: The second operand.
- *
- * @return: The product of a and b.
- */
 long long __multi3(long long a, long long b)
 {
     long long result;

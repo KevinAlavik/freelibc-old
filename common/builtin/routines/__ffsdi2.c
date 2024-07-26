@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __ffsdi2 - Find the index of the least significant set bit in a 64-bit unsigned long.
- *
- * @param a: The integer to be analyzed.
- *
- * @return: The index of the least significant set bit, or zero if a is zero.
- */
 int __ffsdi2(unsigned long a)
 {
 #ifdef __X86_64__

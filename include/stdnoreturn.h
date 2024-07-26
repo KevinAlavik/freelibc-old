@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDNORETURN_H
-#define __FRELIBC_STDNORETURN_H
+#ifndef __FREELIBC_STDNORETURN_H
+#define __FREELIBC_STDNORETURN_H
 
-#define __FRELIBC_DEF_STDNORETURN_GCC
+#define __FREELIBC_DEF_STDNORETURN_GCC
 #include "backends/stdnoreturn-gcc.h"
 
-#endif // __FRELIBC_STDNORETURN_H
+#endif // __FREELIBC_STDNORETURN_H

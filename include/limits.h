@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_LIMITS_H
-#define __FRELIBC_LIMITS_H
+#ifndef __FREELIBC_LIMITS_H
+#define __FREELIBC_LIMITS_H
 
-#define __FRELIBC_DEF_LIMITS_GCC
+#define __FREELIBC_DEF_LIMITS_GCC
 #include "backends/limits-gcc.h"
 
-#endif // __FRELIBC_LIMITS_H
+#endif // __FREELIBC_LIMITS_H

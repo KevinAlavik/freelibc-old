@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __divti3 - Perform signed division of two 128-bit integers.
- *
- * @param a: The dividend.
- * @param b: The divisor.
- *
- * @return: The quotient of a divided by b.
- */
 long long __divti3(long long a, long long b)
 {
     long long result;

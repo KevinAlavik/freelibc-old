@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __popcountsi2 - Count the number of set bits in a 32-bit unsigned integer.
- *
- * @param a: The integer whose set bits are to be counted.
- *
- * @return: The number of set bits.
- */
 int __popcountsi2(unsigned int a)
 {
 #ifdef __X86_64__

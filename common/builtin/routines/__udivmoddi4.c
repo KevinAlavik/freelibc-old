@@ -16,16 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __udivmoddi4 - Perform unsigned division of two 64-bit integers
- * and return both quotient and remainder.
- *
- * @param a: The dividend.
- * @param b: The divisor.
- * @param c: Pointer to store the remainder.
- *
- * @return: The quotient of a divided by b.
- */
 unsigned long __udivmoddi4(unsigned long a, unsigned long b, unsigned long *c)
 {
     unsigned long quotient, remainder;

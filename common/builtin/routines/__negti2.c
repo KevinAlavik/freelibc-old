@@ -16,13 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __negti2 - Perform negation of a 128-bit integer.
- *
- * @param a: The value to be negated.
- *
- * @return: The negation of `a`.
- */
 long long __negti2(long long a)
 {
     long long result;

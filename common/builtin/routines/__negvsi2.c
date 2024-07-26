@@ -18,13 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <limits.h>
 
-/**
- * __negvsi2 - Negate a 32-bit integer with overflow check.
- *
- * @param a: The integer to be negated.
- *
- * @return: The negation of a.
- */
 int __negvsi2(int a)
 {
     if (a == INT_MIN)

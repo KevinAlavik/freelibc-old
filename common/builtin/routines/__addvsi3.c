@@ -16,14 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * __addvsi3 - Add two 32-bit integers with overflow check.
- *
- * @param a: First integer.
- * @param b: Second integer.
- *
- * @return: The sum of a and b.
- */
 int __addvsi3(int a, int b)
 {
     int result = a + b;
