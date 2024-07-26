@@ -2,23 +2,36 @@
 Freelibc
 Copyright (C) 2024 Kevin Alavik and contributors
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License (GPL) as published by
+the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+As an exception to the GPL-3.0, you may link or combine Freelibc with
+other software that is not GPL-3.0 licensed, and distribute the combined
+work under the terms of the license of the other software, provided that
+Freelibc remains licensed under GPL-3.0.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program. If not, see: <http://www.gnu.org/licenses/>
 */
 #include "utils.h"
+#include <stdwriter.h>
+
+void ch(u8 ch)
+{
+    putc(ch);
+}
 
 int main()
 {
-    puts("Hello, World!\n");
+    writer_t stdout;
+    writer_init(&stdout, WRITER_FMT_CPRINTF, ch);
+    writer_write(&stdout, "Hello, %s!\n", "World");
     return 0;
 }

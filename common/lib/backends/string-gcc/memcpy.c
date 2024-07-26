@@ -2,18 +2,23 @@
 Freelibc
 Copyright (C) 2024 Kevin Alavik and contributors
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License (GPL) as published by
+the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+As an exception to the GPL-3.0, you may link or combine Freelibc with
+other software that is not GPL-3.0 licensed, and distribute the combined
+work under the terms of the license of the other software, provided that
+Freelibc remains licensed under GPL-3.0.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program. If not, see: <http://www.gnu.org/licenses/>
 */
 
 #define __FREELIBC_DEF_STRING_GCC
@@ -21,8 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 void *memcpy(void *destination, const void *source, size_t num)
 {
-  char *dest = (char *)destination;       // Cast destination to char* for byte-wise copying
-  const char *src = (const char *)source; // Cast source to char* for byte-wise copying
+  char *dest = (char *)destination;
+  const char *src = (const char *)source;
 
   __asm__ volatile(
       "cld\n"       // Clear direction flag for forward copying
@@ -34,5 +39,5 @@ void *memcpy(void *destination, const void *source, size_t num)
       : "memory"    // Memory may be modified
   );
 
-  return destination; // Return the destination pointer
+  return destination;
 }

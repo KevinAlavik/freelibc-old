@@ -21,13 +21,24 @@ You should have received a copy of the GNU General Public License along
 with this program. If not, see: <http://www.gnu.org/licenses/>
 */
 
-int __subvsi3(int a, int b)
+#include <stdwriter.h>
+#include <stdarg.h>
+
+int writer_write(writer_t *writer, const char *fmt, ...)
 {
-    int result = a - b;
-    // Check for overflow
-    if (((a ^ result) & (~b ^ result)) < 0)
+    int ret = 0;
+    va_list args;
+    va_start(args, fmt);
+
+    switch (writer->fmt)
     {
-        __builtin_abort(); // Overflow detected
+    case WRITER_FMT_CPRINTF:
+        ret = _writer_vprintf(writer, fmt, args);
+        break;
+    default:
+        break;
     }
-    return result;
+    va_end(args);
+
+    return ret;
 }

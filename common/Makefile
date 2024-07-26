@@ -16,7 +16,7 @@
 
 CC ?= gcc
 INCLUDE_DIR ?= ../include
-CFLAGS ?= -ffreestanding -Wall -Wextra -g -I$(INCLUDE_DIR)
+CFLAGS ?= -fno-stack-protector -ffreestanding -Wall -Wextra -g -I$(INCLUDE_DIR)
 BIN_DIR ?= ../bin
 OBJ_DIR = $(BIN_DIR)/obj
 SRC_FILES = $(shell find . -name '*.c')

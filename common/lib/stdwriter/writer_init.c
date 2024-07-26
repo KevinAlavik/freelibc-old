@@ -21,13 +21,10 @@ You should have received a copy of the GNU General Public License along
 with this program. If not, see: <http://www.gnu.org/licenses/>
 */
 
-int __subvsi3(int a, int b)
+#include <stdwriter.h>
+
+void writer_init(writer_t *writer, writer_fmt fmt, writer_callback_t callback)
 {
-    int result = a - b;
-    // Check for overflow
-    if (((a ^ result) & (~b ^ result)) < 0)
-    {
-        __builtin_abort(); // Overflow detected
-    }
-    return result;
+    writer->fmt = fmt;
+    writer->callback = callback;
 }
