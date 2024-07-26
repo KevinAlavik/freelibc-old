@@ -16,21 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#define __FREELIBC_POSIX_DEF_LIMITS
-#include <limits-posix.h>
+#ifndef __FRELIBC_LIMITS_H
+#define __FRELIBC_LIMITS_H
 
-/**
- * __negvsi2 - Negate a 32-bit integer with overflow check.
- *
- * @param a: The integer to be negated.
- *
- * @return: The negation of a.
- */
-int __negvsi2(int a)
-{
-    if (a == INT_MIN)
-    {
-        __builtin_abort(); // Overflow detected
-    }
-    return -a;
-}
+#define __FRELIBC_DEF_LIMITS_GCC
+#include <backends/limits-gcc.h>
+
+#endif // __FRELIBC_LIMITS_H
