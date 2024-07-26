@@ -16,10 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDINT_H
-#define __FRELIBC_STDINT_H
+#ifndef __FRELIBC_STDNORETURN_GCC_H
+#define __FRELIBC_STDNORETURN_GCC_H
 
-#define __FRELIBC_DEF_STDINT_GCC
-#include <backends/stdint-gcc.h>
+#if defined(__FRELIBC_DEF_STDNORETURN_GCC)
 
-#endif // __FRELIBC_STDINT_H
+#define noreturn __attribute__((noreturn))
+
+#endif // __FRELIBC_DEF_STDNORETURN_GCC
+
+#endif // __FRELIBC_STDNORETURN_GCC_H

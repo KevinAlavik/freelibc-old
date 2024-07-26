@@ -16,10 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDINT_H
-#define __FRELIBC_STDINT_H
+#ifndef __FRELIBC_STDARG_GCC_H
+#define __FRELIBC_STDARG_GCC_H
 
-#define __FRELIBC_DEF_STDINT_GCC
-#include <backends/stdint-gcc.h>
+#if defined(__FRELIBC_DEF_STDARG_GCC)
 
-#endif // __FRELIBC_STDINT_H
+typedef __builtin_va_list va_list;
+
+#define va_start(ap, param) __builtin_va_start(ap, param)
+#define va_arg(ap, type) __builtin_va_arg(ap, type)
+#define va_end(ap) __builtin_va_end(ap)
+#define va_copy(dest, src) __builtin_va_copy(dest, src)
+
+#endif // __FRELIBC_DEF_STDARG_GCC
+
+#endif // __FRELIBC_STDARG_GCC_H

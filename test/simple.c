@@ -18,30 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdint.h>
 
-void putc(char ch)
-{
-    asm volatile(
-        "mov $1, %%rax;"
-        "mov $1, %%rdi;"
-        "mov %0, %%rsi;"
-        "mov $1, %%rdx;"
-        "syscall"
-        :
-        : "r"(&ch)
-        : "%rax", "%rdi", "%rsi", "%rdx");
-}
-
-void puts(char *str)
-{
-    while (*str != '\0')
-    {
-        putc(*str);
-        str++;
-    }
-}
-
 int main()
 {
-    puts("Hello\n");
-    return 0;
+    return sizeof(uintptr_t);
 }

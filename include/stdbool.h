@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRELIBC_STDINT_H
-#define __FRELIBC_STDINT_H
+#ifndef __FRELIBC_STDBOOL_H
+#define __FRELIBC_STDBOOL_H
 
-#define __FRELIBC_DEF_STDINT_GCC
-#include <backends/stdint-gcc.h>
+#define __FRELIBC_DEF_STDBOOL_GCC
+#include <backends/stdbool-gcc.h>
 
-#endif // __FRELIBC_STDINT_H
+#endif // __FRELIBC_STDBOOL_H
