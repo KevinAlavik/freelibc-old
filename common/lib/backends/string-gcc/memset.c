@@ -33,5 +33,5 @@ void *memset(void *ptr, int value, size_t num)
       : "memory"    // Memory may be modified
   );
 
-  return ptr; // Return the original pointer
+  return ptr;
 }

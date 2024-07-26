@@ -16,7 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "stdalloc.h"
+#include <stdalloc.h>
+#include <string.h>
 
 #define ALIGNMENT 8
 
@@ -38,6 +39,8 @@ void alloc_init(void *buffer, usize size)
     free_list = (Block *)align_pointer(buffer, ALIGNMENT);
     free_list->size = size;
     free_list->next = NULL;
+
+    memset(buffer, 0, size);
 }
 
 void *alloc(usize size)

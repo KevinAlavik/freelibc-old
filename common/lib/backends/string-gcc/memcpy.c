@@ -21,8 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 void *memcpy(void *destination, const void *source, size_t num)
 {
-  char *dest = (char *)destination;       // Cast destination to char* for byte-wise copying
-  const char *src = (const char *)source; // Cast source to char* for byte-wise copying
+  char *dest = (char *)destination;
+  const char *src = (const char *)source;
 
   __asm__ volatile(
       "cld\n"       // Clear direction flag for forward copying
@@ -34,5 +34,5 @@ void *memcpy(void *destination, const void *source, size_t num)
       : "memory"    // Memory may be modified
   );
 
-  return destination; // Return the destination pointer
+  return destination;
 }
