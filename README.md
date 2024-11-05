@@ -1,4 +1,8 @@
 # freelibc
+
+> [!WARNING]
+> Discontinued, current version doesnt really work.
+
 A custom set of freestanding headers replacing the freestanding headers of libgcc
 
 ## Usage
